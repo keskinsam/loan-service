@@ -22,8 +22,6 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.Date;
-
 public class LoanServiceTest {
 
     @InjectMocks
@@ -64,7 +62,7 @@ public class LoanServiceTest {
 
         assertTrue(response.isSuccess());
         verify(loanRepository).save(any(Loan.class));
-        verify(customerService).updateCustomerLimits(customer, any(Loan.class));
+        verify(customerService).updateCustomerLimits(eq(customer), any(Loan.class));
         verify(loanInstallmentService).createInstallments(any(Loan.class));
     }
 
